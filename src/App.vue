@@ -1,13 +1,14 @@
 <template>
-  <div class="wapper">
+  <div class="wrapper">
+    <div class="image"></div>
       <Header />
       <div class="wrapper-content">
         <div class="container">
           <RouterView />
         </div>
       </div>
-      <Footer />
-    </div>  
+      <Footer />    
+  </div>  
 </template>
 
 
