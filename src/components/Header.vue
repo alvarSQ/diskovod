@@ -14,7 +14,7 @@
       </div>
     </div>
   </header>
-
+<!-- табличный хэдер -->
   <header v-else>
     <div class="header">
       <div class="container">

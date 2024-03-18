@@ -1,0 +1,85 @@
+.text_block {
+    max-width: 460px;
+    padding-top: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    p:first-child {
+        font-family: $titleFont;
+        font-size: 60px;
+        line-height: 60px;
+        text-transform: uppercase;
+        z-index: 1;
+    }
+    p:last-child {
+        font-family: $mainFont;
+        font-size: 15px;
+        line-height: normal;
+        z-index: 1;
+    }
+}
+.line {
+    height: 2px;
+    background: linear-gradient(90deg, #d99543 0%, rgba(217, 149, 67, 0) 100%);
+    z-index: 1;
+}
+
+.main_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 30px;
+}
+
+.vertical {
+    flex-direction: column;
+}
+
+.ellips {
+    top: 251px;
+    left: -260px;
+    width: 747px;
+    height: 444px;
+    position: absolute;
+    background-image: url("@/assets/img/ellipse2.png");
+    z-index: 0;
+}
+
+.advantages {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, .7);
+    z-index: 2;
+}
+
+.advantage {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    width: 100%;
+    position: relative;
+}
+
+.adv_cont {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    p {
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+}

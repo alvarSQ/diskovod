@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "JetBrainsMono";
-  font-style: normal;     
+  font-style: normal;
   line-height: normal;
   font-weight: 300;
   /* Браузер сначала попробует найти шрифт локально */
@@ -17,7 +17,7 @@
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 300;     
+  font-weight: 300;
   line-height: normal;
   /* Браузер сначала попробует найти шрифт локально */
   src:
@@ -105,7 +105,7 @@ section,
   }
 }
 
-.wrapper {  
+.wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -115,7 +115,7 @@ section,
   background-color: black;
 }
 
-.image {  
+.image {
   position: absolute;
   top: 0;
   left: 0;
@@ -130,7 +130,7 @@ section,
   display: flex;
   flex-direction: column;
   min-height: 70vh;
-  margin-top: 300px; // if header is fixed do mt: headerHeight
+  // margin-top: 300px; // if header is fixed do mt: headerHeight
 }
 
 .container {
@@ -164,5 +164,16 @@ section,
   }
 }
 
+.sm {
+  width: 30px;
+  height: 30px;
+  fill: white;
+  cursor: pointer;
+  &:hover {
+    fill: #48b322;
+  }  
+}
+
 @import "./common/_common";
 @import "./helpers/_helpers";
+@import "./content";

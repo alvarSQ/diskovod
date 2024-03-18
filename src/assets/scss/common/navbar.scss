@@ -16,7 +16,8 @@
 }
 
 .logo {
-  font-size: 26px;
+  font-size: 26px;  
+  font-family: $titleFont;
   cursor: pointer;
   &:hover {
     color: #48b322;
@@ -29,6 +30,7 @@
   left: 0;
   margin-top: 46px;
   width: 100%;
+  z-index: 2;
 }
 
 .header_table {
@@ -62,7 +64,8 @@
   margin: 0 -2px -2px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
+  font-family: $titleFont;
 }
 
 .navbar-logo {
