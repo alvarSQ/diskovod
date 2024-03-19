@@ -4,6 +4,11 @@
     gap: 25px;
 }
 
+.spaseBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
 .mH100vh {
   min-height: 100vh;
 }
@@ -34,4 +39,16 @@
 .w44 {
     width: 44px;
     height: 44px;
+}
+
+.w86 {
+    width: 86px;
+    height: 86px;
+}
+
+.translate {
+    transition: transform .4s ease-in-out;       
+    &:hover {
+        transform: translate(-40%);
+    }
 }

@@ -1,3 +1,23 @@
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("@/assets/img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100%;
+    padding: 130px 0;
+    position: relative;
+    z-index: 1;
+}
+
 .text_block {
     max-width: 460px;
     padding-top: 400px;
@@ -18,6 +38,29 @@
         z-index: 1;
     }
 }
+
+.desciption {
+    max-width: 390px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px
+}
+
+.ptitel {
+    font-family: $titleFont;
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 54px;
+    text-transform: uppercase;
+    max-width: 640px;
+}
+
+.text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 18px;
+}
+
 .line {
     height: 2px;
     background: linear-gradient(90deg, #d99543 0%, rgba(217, 149, 67, 0) 100%);
@@ -49,7 +92,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 2;
 }
 
@@ -83,3 +126,52 @@
         text-transform: uppercase;
     }
 }
+
+.wrapper2p {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.bg {
+    position: absolute;
+    top: -800px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 1284px;
+    height: 1752px;
+    background-image: url("@/assets/img/ellipse.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.table {
+    display: grid;
+    padding-top: 70px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cell2 {
+    border: 2px solid white;
+    margin: 0 -2px -2px 0;
+    padding: 30px 50px;
+    &:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    }
+}
+
+.title2 {
+    font-family: $titleFont;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 30px;
+    color: white;
+}
+
+// .column {
+//     grid-template-rows: repeat(3, 1fr)
+// }
+
+
