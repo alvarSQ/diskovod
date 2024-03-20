@@ -9,6 +9,10 @@
     justify-content: space-between;
 }
 
+.padd20 {
+    padding: 20px !important;
+}
+
 .mH100vh {
   min-height: 100vh;
 }
@@ -46,9 +50,18 @@
     height: 86px;
 }
 
+.opacity {
+    opacity: 0;
+    transition: all .4s ease-in-out; 
+}
+
 .translate {
     transition: transform .4s ease-in-out;       
     &:hover {
         transform: translate(-40%);
     }
+}
+
+.mW640 {
+ max-width: 640px;
 }

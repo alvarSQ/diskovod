@@ -2,11 +2,11 @@
   <div class="wrapper">
     <div class="image"></div>
       <Header />
-      <div class="wrapper-content">
+      <!-- <div class="wrapper-content"> -->
         
           <RouterView />
         
-      </div>
+      <!-- </div> -->
       <Footer />    
   </div>  
 </template>

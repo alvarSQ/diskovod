@@ -80,6 +80,9 @@ button {
 
 a {
   text-decoration: none;
+  &:hover {
+    color: #48b322;
+  }
 }
 
 ul,
@@ -89,7 +92,6 @@ li {
   padding: 0;
 }
 
-footer, // also footer if footer without section
 section,
 .section {
   position: relative;
@@ -112,7 +114,6 @@ section,
   width: 100%;
   margin: 0 auto;
   color: white;
-  background-color: black;
 }
 
 
@@ -165,6 +166,8 @@ section,
   }  
 }
 
+@import "./utils/modi";
 @import "./common/_common";
 @import "./helpers/_helpers";
 @import "./content";
+

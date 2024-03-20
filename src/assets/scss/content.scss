@@ -46,13 +46,12 @@
     gap: 14px
 }
 
-.ptitel {
+.ptitle {
     font-family: $titleFont;
     font-size: 44px;
     font-weight: 300;
     line-height: 54px;
     text-transform: uppercase;
-    max-width: 640px;
 }
 
 .text {
@@ -131,6 +130,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     position: relative;
+    background-color: black;
 }
 
 .bg {
@@ -169,9 +169,3 @@
     line-height: 30px;
     color: white;
 }
-
-// .column {
-//     grid-template-rows: repeat(3, 1fr)
-// }
-
-
