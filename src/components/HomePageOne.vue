@@ -60,30 +60,9 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .title_block {
   position: relative;
 }
 
-// .tShadow {
-//   @media (max-width: 520px) {
-//     text-shadow:
-//       -0 -1px 6px #000000,
-//       0 -1px 6px #000000,
-//       -0 1px 6px #000000,
-//       0 1px 6px #000000,
-//       -1px -0 6px #000000,
-//       1px -0 6px #000000,
-//       -1px 0 6px #000000,
-//       1px 0 6px #000000,
-//       -1px -1px 6px #000000,
-//       1px -1px 6px #000000,
-//       -1px 1px 6px #000000,
-//       1px 1px 6px #000000,
-//       -1px -1px 6px #000000,
-//       1px -1px 6px #000000,
-//       -1px 1px 6px #000000,
-//       1px 1px 6px #000000;
-//   }
-// }
 </style>>
