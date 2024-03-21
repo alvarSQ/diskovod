@@ -40,12 +40,27 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 170px 0;
+
+  @media (max-width: 1240px) {
+    max-width: 940px;
+  }
+
+  @media (max-width: 980px) {
+    max-width: 620px;
+  }
+    @media (max-width: 520px) {
+      max-width: 300px;
+    }
 }
 
 .content5 {
   display: flex;
   justify-content: space-between;
   padding-top: 40px;
+  @media (max-width: 520px) {
+      flex-direction: column;
+        gap: 30px;
+    }
 }
 
 .img5 {
@@ -61,6 +76,14 @@
     font-size: 15px;
     line-height: 18px;
     max-width: 400px;
+
+    @media (min-width: 980px) and (max-width: 1240px) {
+      max-width: 600px;
+    }
+  }
+
+  @media (max-width: 1240px) {
+    flex-direction: column;
   }
 }
 </style>

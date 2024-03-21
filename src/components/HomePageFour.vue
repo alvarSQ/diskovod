@@ -2,7 +2,7 @@
   <div class="wrapper4">
     <div class="bg4"></div>
     <div class="content4">
-      <p class="ptitle">Специальные предложения</p>
+      <p class="ptitle text-align-center">Специальные предложения</p>
       <div class="products">
         <ProductCard>
           <template v-slot:title>
@@ -65,6 +65,18 @@ import ProductCard from '@/components/UI/productCard.vue'
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 170px;
+
+  @media (max-width: 1240px) {
+    max-width: 940px;
+  }
+
+  @media (max-width: 980px) {
+    max-width: 620px;
+  }
+
+  @media (max-width: 520px) {
+    max-width: 300px;
+  }
 }
 
 .products {
@@ -72,6 +84,14 @@ import ProductCard from '@/components/UI/productCard.vue'
   grid-template-columns: repeat(4, 1fr);
   padding-top: 70px;
   gap: 40px;
+
+  @media (max-width: 1240px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 >

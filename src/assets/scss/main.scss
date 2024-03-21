@@ -31,15 +31,6 @@ html {
   font-size: $mainFontSize;
   color: $mainFontColor;
   height: 100%;
-  @media screen and (max-width: $desktopWidth) {
-    font-size: 16px;
-  }
-  @media screen and (max-width: $tableWidth) {
-    font-size: 15px;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    font-size: 14px;
-  }
 }
 button {
   cursor: pointer;
@@ -95,16 +86,7 @@ li {
 section,
 .section {
   position: relative;
-  padding: 40px 0;
-  @media screen and (max-width: $desktopWidth) {
-    padding: 36px 0;
-  }
-  @media screen and (max-width: $desktopWidth) {
-    padding: 28px 0;
-  }
-  @media screen and (max-width: $desktopWidth) {
-    padding: 20px 0;
-  }
+  padding: 40px 0;  
 }
 
 .wrapper {
@@ -114,6 +96,9 @@ section,
   width: 100%;
   margin: 0 auto;
   color: white;
+  background-color: black;
+      overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 
@@ -131,21 +116,15 @@ section,
   margin: 0 auto;
   width: 100%;
   max-width: 1200px;
-  @media screen and (max-width: $lgDesktopWidth) {
-    padding: 0 16px;
+  @media (max-width: 1240px) {
+    width: 940px;
+  }  
+  @media (max-width: 980px) {
+    width: 620px;
   }
-  @media screen and (max-width: $smDesktopWidth) {
-    max-width: $tableWidth;
-  }
-  @media screen and (max-width: $tableWidth) {
-    max-width: $smTableWidth;
-  }
-  @media screen and (max-width: $smTableWidth) {
-    max-width: $phoneWidth;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    max-width: $smPhoneWidth;
-  }
+  @media (max-width: 520px) {
+    width: 300px;
+  }  
 }
 
 .view-sm {

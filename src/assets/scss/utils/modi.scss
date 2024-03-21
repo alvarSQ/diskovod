@@ -13,6 +13,10 @@
     padding: 20px !important;
 }
 
+.padd30 {
+    padding: 30px 0;
+}
+
 .mH100vh {
   min-height: 100vh;
 }
@@ -30,6 +34,13 @@
 .fS14 {
     font-size: 14px;
     line-height: normal;
+}
+
+.text-align-center {
+    @media (max-width: 520px) {
+    text-align: center;
+  }  
+    
 }
 
 .grin {
@@ -64,4 +75,8 @@
 
 .mW640 {
  max-width: 640px;
+}
+
+.mH90 {
+    min-height: 90px;
 }

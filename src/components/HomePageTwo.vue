@@ -1,8 +1,8 @@
 <template>
-    <div class="wrapper2p">
+  <div class="wrapper2p">
     <div class="bg"></div>
     <div class="container2">
-      <div class="spaseBetween">
+      <div class="text_block2">
         <p class="ptitle mW640">подбор оптимальных решений для бизнес-задач</p>
         <div class="desciption">
           <p class="text">
@@ -22,13 +22,13 @@
             <img src="@/assets/img/cube1.png" class="w86" />
           </div>
           <div class="cell2">
-            <p class="title2">Серверные SSD накопители</p>
+            <p class="title2 mH90">Серверные SSD накопители</p>
             <p class="text">Надежное хранение и&nbsp;быстрый доступ к&nbsp;данным</p>
           </div>
           <a class="cell2 spaseBetween" href="#">
             <p class="title2">Перейти</p>
             <svg class="sm grin translate">
-                <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
+              <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
             </svg>
           </a>
         </div>
@@ -37,26 +37,22 @@
             <img src="@/assets/img/cube2.png" class="w86" />
           </div>
           <div class="cell2">
-            <p class="title2">Оперативная память</p>
+            <p class="title2 mH90">Оперативная память</p>
             <p class="text">Надежное хранение и&nbsp;быстрый доступ к&nbsp;данным</p>
           </div>
           <a class="cell2 spaseBetween" href="#">
             <p class="title2">Перейти</p>
             <svg class="sm grin translate">
-                <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
+              <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
             </svg>
           </a>
         </div>
         <div class="column">
-          <div 
-            class="cell2">
-            <img
-              src="@/assets/img/cube3.png"
-              class="w86"/>
+          <div class="cell2">
+            <img src="@/assets/img/cube3.png" class="w86" />
           </div>
-          <div 
-            class="cell2">
-            <p class="title2">Системы хранения данных</p>
+          <div class="cell2">
+            <p class="title2 mH90">Системы хранения данных</p>
             <p class="text">
               Надежное хранение и&nbsp;быстрый доступ к&nbsp;данным
             </p>
@@ -64,7 +60,7 @@
           <a class="cell2 spaseBetween" href="#">
             <p class="title2">Перейти</p>
             <svg class="sm grin translate">
-                <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
+              <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
             </svg>
           </a>
         </div>
@@ -72,3 +68,14 @@
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.text_block2 {
+  display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 980px) {
+        flex-direction: column;
+          gap: 20px;
+      }
+}
+</style>
