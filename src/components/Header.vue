@@ -1,5 +1,5 @@
 <template>
-  <header v-if="0">
+  <header v-if="isHeader">
     <div class="navbar">
       <div class="black_nav">
         <div class="container padd30">
@@ -12,7 +12,7 @@
                 Оригинальные серверные<br>комплектующие
               </p>
             </div>
-            <p class="logo">Меню</p>
+            <p class="logo" @click="varStore.menuHead">Меню</p>
           </div>
         </div>
       </div>
@@ -30,6 +30,22 @@
 
 <script setup>
 import MenuTable from '@/components/UI/menuTable.vue'
+import { ref } from 'vue'
+import { useVarStore } from '@/stores/vars.js'
+
+const varStore = useVarStore()
+
+const isHeader = ref(false)
+
+window.addEventListener('scroll', function () {
+  if (window.scrollY > 176) {
+    isHeader.value = true
+  }
+  else {
+    isHeader.value = false
+  }
+
+});
 </script>
 
 <style lang="scss">

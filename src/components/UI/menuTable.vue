@@ -38,13 +38,16 @@
         </a>
       </div>
     </div>
-    <div class="menu_column cell_menu">
+    <div class="menu_column cell_menu" @click="varStore.menuHead">
       <p>Меню</p>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useVarStore } from '@/stores/vars.js'
+
+const varStore = useVarStore()
 
 </script>
 

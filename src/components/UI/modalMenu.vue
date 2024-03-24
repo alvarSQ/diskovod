@@ -4,7 +4,7 @@
       <div _ngcontent-ng-c3841248351="" class="modal-container">
         <div _ngcontent-ng-c3841248351="" class="title-modal">
           <p>Меню</p>
-          <svg class="cross">
+          <svg class="cross" @click="varStore.menuHead">
             <use xlink:href="@/assets/icons/close.svg#close"></use>
           </svg>
         </div>
@@ -41,6 +41,9 @@
 </template>
 
 <script setup>
+import { useVarStore } from '@/stores/vars.js'
+
+const varStore = useVarStore()
 
 </script>
 
