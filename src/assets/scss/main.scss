@@ -86,7 +86,7 @@ li {
 section,
 .section {
   position: relative;
-  padding: 40px 0;  
+  padding: 40px 0;
 }
 
 .wrapper {
@@ -97,11 +97,9 @@ section,
   margin: 0 auto;
   color: white;
   background-color: black;
-      overflow-x: hidden;
-    overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
-
-
 
 .wrapper-content {
   display: flex;
@@ -118,13 +116,16 @@ section,
   max-width: 1200px;
   @media (max-width: 1240px) {
     width: 940px;
-  }  
+  }
   @media (max-width: 980px) {
     width: 620px;
   }
+  @media (max-width: 680px) {
+    max-width: 460px;
+  }
   @media (max-width: 520px) {
     width: 300px;
-  }  
+  }
 }
 
 .view-sm {
@@ -142,11 +143,10 @@ section,
   cursor: pointer;
   &:hover {
     fill: #48b322;
-  }  
+  }
 }
 
 @import "./utils/modi";
 @import "./common/_common";
 @import "./helpers/_helpers";
 @import "./content";
-

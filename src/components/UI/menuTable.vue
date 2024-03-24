@@ -1,6 +1,6 @@
 <template>
   <div class="menu_table">
-    <div class="first_column cell_menu">
+    <div class="first_column cell_menu" @click="home">
       <a href="#">
         <p class="logo">SERVE<span class="grin">RAM</span>RU</p>
       </a>
@@ -13,7 +13,7 @@
         <a class="cell_menu" href="#">
           <p>Серверные SSD накопители</p>
         </a>
-        <a class="cell_menu" href="#">
+        <a class="cell_menu" href="#" @click="category">
           <p>Оперативная память</p>
         </a>
         <a class="cell_menu" href="#">
@@ -46,9 +46,20 @@
 
 <script setup>
 import { useVarStore } from '@/stores/vars.js'
+import { useRoute, useRouter } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 const varStore = useVarStore()
 
+const category = () => {
+  router.push('category')
+}
+
+const home = () => {
+  router.push('/')
+}
 </script>
 
 
@@ -139,8 +150,9 @@ const varStore = useVarStore()
 .text_logo {
   font-size: 14px;
   line-height: normal;
+  
 
-  @media (max-width: 520px) {
+  @media (max-width: 680px) {
     display: none;
   }
 }

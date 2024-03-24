@@ -9,7 +9,7 @@
                 <p class="titleProduct">
                     <slot name="title"></slot>
                 </p>
-                <p class="price">
+                <p class="price padTop18">
                     <slot name="price"></slot>
                 </p>
             </div>
@@ -18,7 +18,8 @@
                 <svg class="sm grin opacity">
                     <use xlink:href="@/assets/icons/plus.svg#plus"></use>
                 </svg>
-            </div><a class="cell4 padd20 moorButton" href="#">
+            </div>
+            <a class="cell4 padd20 moorButton" href="#" @click="prod">
                 <p class="text4">Подробнее</p>
                 <svg class="sm grin opacity">
                     <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
@@ -27,6 +28,17 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { useRoute, useRouter } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
+
+const prod = () => {
+    router.push('product')
+}
+</script>
 
 <style lang="scss">
 @import "@/assets/scss/utils/vars.scss";
@@ -83,7 +95,6 @@
     font-family: $titleFont;
     color: #48b322;
     font-size: 22px;
-    padding-top: 18px;
 }
 
 .text4 {

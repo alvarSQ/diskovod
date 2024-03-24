@@ -5,7 +5,7 @@
         <div class="container padd30">
           <div class="navbar-content">
             <div class="oneLine">
-              <a href="#">
+              <a href="#" @click="home">
                 <p class="logo">SERVE<span class="grin">RAM</span>RU</p>
               </a>
               <p class="text_logo">
@@ -32,8 +32,16 @@
 import MenuTable from '@/components/UI/menuTable.vue'
 import { ref } from 'vue'
 import { useVarStore } from '@/stores/vars.js'
+import { useRoute, useRouter } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 const varStore = useVarStore()
+
+const home = () => {
+  router.push('/')
+}
 
 const isHeader = ref(false)
 

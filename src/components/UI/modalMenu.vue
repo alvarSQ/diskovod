@@ -12,7 +12,7 @@
           <a class="cell-modal" href="#">
             <p>Серверные SSD накопители</p>
           </a>
-          <a class="cell-modal" href="#">
+          <a class="cell-modal" href="#" @click="category">
             <p>Оперативная память</p>
           </a>
           <a class="cell-modal" href="#">
@@ -42,8 +42,17 @@
 
 <script setup>
 import { useVarStore } from '@/stores/vars.js'
+import { useRoute, useRouter } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 const varStore = useVarStore()
+
+const category = () => {
+  router.push('category')
+  varStore.menuHead()
+}
 
 </script>
 
