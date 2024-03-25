@@ -61,4 +61,4 @@ window.addEventListener('scroll', function () {
   background-color: #000000e6;
   width: 100%;
 }
-</style>
+</style>@/stores/categories.js

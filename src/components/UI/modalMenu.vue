@@ -9,14 +9,8 @@
           </svg>
         </div>
         <div class="content-modal">
-          <a class="cell-modal" href="#">
-            <p>Серверные SSD накопители</p>
-          </a>
-          <a class="cell-modal" href="#" @click="category">
-            <p>Оперативная память</p>
-          </a>
-          <a class="cell-modal" href="#">
-            <p>Системы хранения данных</p>
+          <a v-for="category in catStore.getCategories" :key="category.id" class="cell-modal" href="/category">
+            <p>{{ category.name }}</p>
           </a>
           <a class="cell-modal" href="/about">
             <p>О нас</p>
@@ -42,17 +36,14 @@
 
 <script setup>
 import { useVarStore } from '@/stores/vars.js'
+import { useCategoriesStore } from '@/stores/categories.js'
 import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 
 const varStore = useVarStore()
-
-const category = () => {
-  router.push('category')
-  varStore.menuHead()
-}
+const catStore = useCategoriesStore()
 
 </script>
 
@@ -137,6 +128,7 @@ const category = () => {
   align-items: center;
   justify-content: center;
   padding: 50px 0;
+
   &:hover p {
     color: #48b322;
   }
@@ -161,4 +153,4 @@ const category = () => {
   background-color: #0006;
   z-index: 99;
 }
-</style>
+</style>@/stores/categories.js

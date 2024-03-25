@@ -10,14 +10,8 @@
     </div>
     <div class="second_column fS14">
       <div class="first_row">
-        <a class="cell_menu" href="#">
-          <p>Серверные SSD накопители</p>
-        </a>
-        <a class="cell_menu" href="#" @click="category">
-          <p>Оперативная память</p>
-        </a>
-        <a class="cell_menu" href="#">
-          <p>Системы хранения данных</p>
+        <a v-for="category in catStore.getCategories" :key="category.id" class="cell_menu" href="/category">
+          <p>{{ category.name }}</p>
         </a>
       </div>
       <div class="second_row">
@@ -47,15 +41,13 @@
 <script setup>
 import { useVarStore } from '@/stores/vars.js'
 import { useRoute, useRouter } from 'vue-router'
+import { useCategoriesStore } from '@/stores/categories.js'
 
 const router = useRouter()
 const route = useRoute()
 
 const varStore = useVarStore()
-
-const category = () => {
-  router.push('category')
-}
+const catStore = useCategoriesStore()
 
 const home = () => {
   router.push('/')
@@ -150,7 +142,7 @@ const home = () => {
 .text_logo {
   font-size: 14px;
   line-height: normal;
-  
+
 
   @media (max-width: 680px) {
     display: none;
@@ -198,3 +190,4 @@ const home = () => {
   display: none;
 }
 </style>
+@/stores/categories.js
