@@ -27,7 +27,6 @@ const catStore = useCategoriesStore()
 const prodStore = useProductsStore()
 
 catStore.loadCategories()
-prodStore.loadProducts()
 
 </script>
 @/stores/categories.js

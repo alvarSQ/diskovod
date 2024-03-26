@@ -9,7 +9,8 @@
           </svg>
         </div>
         <div class="content-modal">
-          <a v-for="category in catStore.getCategories" :key="category.id" class="cell-modal" href="/category">
+          <a v-for="category in catStore.getCategories" :key="category.id" class="cell-modal"
+            @click="goCategory(category.slug)">
             <p>{{ category.name }}</p>
           </a>
           <a class="cell-modal" href="/about">
@@ -35,15 +36,22 @@
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router'
 import { useVarStore } from '@/stores/vars.js'
 import { useCategoriesStore } from '@/stores/categories.js'
-import { useRoute, useRouter } from 'vue-router'
+import { useProductsStore } from '@/stores/products.js'
+const varStore = useVarStore()
+const catStore = useCategoriesStore()
+const prodStore = useProductsStore()
 
 const router = useRouter()
 const route = useRoute()
 
-const varStore = useVarStore()
-const catStore = useCategoriesStore()
+const goCategory = (slug) => {
+  varStore.menuHead()
+  router.push({ name: 'category', params: { slug: slug } })
+  prodStore.loadProducts('?category=', slug)
+}
 
 </script>
 
@@ -128,6 +136,7 @@ const catStore = useCategoriesStore()
   align-items: center;
   justify-content: center;
   padding: 50px 0;
+  cursor: pointer;
 
   &:hover p {
     color: #48b322;

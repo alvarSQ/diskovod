@@ -1,6 +1,6 @@
 <template>
   <div class="menu_table">
-    <div class="first_column cell_menu" @click="home">
+    <div class="first_column cell_menu" @click="goHome">
       <a href="#">
         <p class="logo">SERVE<span class="grin">RAM</span>RU</p>
       </a>
@@ -10,7 +10,8 @@
     </div>
     <div class="second_column fS14">
       <div class="first_row">
-        <a v-for="category in catStore.getCategories" :key="category.id" class="cell_menu" href="/category">
+        <a v-for="category in catStore.getCategories" :key="category.id" class="cell_menu"
+          @click="goCategory(category.slug)">
           <p>{{ category.name }}</p>
         </a>
       </div>
@@ -39,19 +40,24 @@
 </template>
 
 <script setup>
-import { useVarStore } from '@/stores/vars.js'
+
 import { useRoute, useRouter } from 'vue-router'
+import { useVarStore } from '@/stores/vars.js'
 import { useCategoriesStore } from '@/stores/categories.js'
+import { useProductsStore } from '@/stores/products.js'
+const varStore = useVarStore()
+const catStore = useCategoriesStore()
+const prodStore = useProductsStore()
 
 const router = useRouter()
 const route = useRoute()
 
-const varStore = useVarStore()
-const catStore = useCategoriesStore()
-
-const home = () => {
-  router.push('/')
+const goCategory = (slug) => {
+  router.push({ name: 'category', params: { slug: slug } })
+  prodStore.loadProducts('?category=', slug)
 }
+
+const goHome = () => router.push({ name: 'home' })
 </script>
 
 
@@ -106,6 +112,7 @@ const home = () => {
   font-family: $titleFont;
   font-size: 14px;
   color: white;
+  cursor: pointer;
 
   @media (max-width: 1240px) {
     padding: 50px 0;

@@ -5,7 +5,7 @@
         <div class="container padd30">
           <div class="navbar-content">
             <div class="oneLine">
-              <a href="#" @click="home">
+              <a href="#" @click="goHome">
                 <p class="logo">SERVE<span class="grin">RAM</span>RU</p>
               </a>
               <p class="text_logo">
@@ -39,9 +39,7 @@ const route = useRoute()
 
 const varStore = useVarStore()
 
-const home = () => {
-  router.push('/')
-}
+const goHome = () => router.push({ name: 'home' })
 
 const isHeader = ref(false)
 

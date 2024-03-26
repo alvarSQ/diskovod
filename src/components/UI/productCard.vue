@@ -19,7 +19,7 @@
                     <use xlink:href="@/assets/icons/plus.svg#plus"></use>
                 </svg>
             </div>
-            <a class="cell4 padd20 moorButton" href="#" @click="prod">
+            <a class="cell4 padd20 moorButton" href="#" @click="goProduct">
                 <p class="text4">Подробнее</p>
                 <svg class="sm grin opacity">
                     <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
@@ -35,9 +35,9 @@ import { useRoute, useRouter } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
-const prod = () => {
-    router.push('product')
-}
+// const goProduct = () => {
+//     router.push({ name: 'product', params: { slug: question.value.id + 1 } })
+// }
 </script>
 
 <style lang="scss">

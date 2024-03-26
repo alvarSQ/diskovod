@@ -3,14 +3,14 @@
     <div class="bg-category"></div>
     <div style="padding-top: 170px;"></div>
     <div style="margin-top: 20px; position: relative; height: auto;"></div>
-    <div class="container-category">
-      <div class="title-category">Оперативная память</div>
+    <div class="container-category" v-if="hasCategory">
+      <div class="title-category">{{ category.name }}</div>
       <div class="content-category">
 
         <form class="filters">
           <div class="sort">
             <CustomSelect :options="['Порядок: по умолчанию', 'Сначала дешевые', 'Сначала дорогие', 'Новые']"
-              :default="'Порядок: по умолчанию'"/> 
+              :default="'Порядок: по умолчанию'" />
           </div>
           <div>
             <div class="filter">
@@ -106,73 +106,47 @@
           </div>
         </form>
         <div class="products-category">
-          <ProductCard>
+          <ProductCard v-for="product in prodStore.getProductsCategory" :key="product.id">
             <template v-slot:title>
-              Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CMA
+              {{ product.name }}
             </template>
             <template v-slot:price>
-              9 800 р.
-            </template>
-          </ProductCard>
-          <ProductCard>
-            <template v-slot:title>
-              Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CK0Q2
-            </template>
-            <template v-slot:price>
-              1 750 р.
-            </template>
-          </ProductCard>
-          <ProductCard>
-            <template v-slot:title>
-              Модуль памяти Samsung 32 ГБ DDR3 M386B4G70DM0-CMA4Q
-            </template>
-            <template v-slot:price>
-              3 980 р.
-            </template>
-          </ProductCard>
-          <ProductCard>
-            <template v-slot:title>
-              Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CMA
-            </template>
-            <template v-slot:price>
-              9 800 р.
-            </template>
-          </ProductCard>
-          <ProductCard>
-            <template v-slot:title>
-              Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CK0Q2
-            </template>
-            <template v-slot:price>
-              1 750 р.
-            </template>
-          </ProductCard>
-          <ProductCard>
-            <template v-slot:title>
-              Модуль памяти Samsung 32 ГБ DDR3 M386B4G70DM0-CMA4Q
-            </template>
-            <template v-slot:price>
-              3 980 р.
-            </template>
-          </ProductCard>
-          <ProductCard>
-            <template v-slot:title>
-              Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CMA
-            </template>
-            <template v-slot:price>
-              9 800 р.
+              {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
             </template>
           </ProductCard>
 
         </div>
       </div>
     </div>
-
+    <notFound v-else />
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import ProductCard from '@/components/UI/productCard.vue'
 import CustomSelect from '@/components/UI/custom-select.vue'
+import notFound from '@/views/notFound.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useVarStore } from '@/stores/vars.js'
+import { useCategoriesStore } from '@/stores/categories.js'
+import { useProductsStore } from '@/stores/products.js'
+const varStore = useVarStore()
+const catStore = useCategoriesStore()
+const prodStore = useProductsStore()
+
+const router = useRouter()
+const route = useRoute()
+
+// const goProduct = () => {
+//     router.push({ name: 'product', params: { slug: question.value.id + 1 } })
+// }
+
+const slug = computed(() => route.params.slug)
+const category = computed(() => catStore.getCategoryBySlug(slug.value))
+const hasCategory = computed(() => category.value !== undefined)
+
+prodStore.loadProducts('?category=', slug.value, hasCategory.value)
 
 </script>
 
@@ -201,6 +175,7 @@ import CustomSelect from '@/components/UI/custom-select.vue'
 .container-category {
   position: relative;
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
   padding-bottom: 130px;
   z-index: 1;

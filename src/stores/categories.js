@@ -9,7 +9,8 @@ export const useCategoriesStore = defineStore('categories', {
     categories: null,
   }),
   getters: {
-    getCategories: state => state.categories
+    getCategories: state => state.categories,
+    getCategoryBySlug: state => slug => state.categories.find(el => el.slug === slug),
   },
   actions: {
     async loadCategories() {

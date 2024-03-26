@@ -4,30 +4,15 @@
     <div class="content4">
       <p class="ptitle text-align-center">Специальные предложения</p>
       <div class="products">
-        <ProductCard>
+        <ProductCard v-for="product in prodStore.getProductsPromo" :key="product.id">
           <template v-slot:title>
-            Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CMA
+            {{ product.name}}
           </template>
           <template v-slot:price>
-            9 800 р.
+            {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
           </template>
         </ProductCard>
-        <ProductCard>
-          <template v-slot:title>
-            Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CK0Q2
-          </template>
-          <template v-slot:price>
-            1 750 р.
-          </template>
-        </ProductCard>
-        <ProductCard>
-          <template v-slot:title>
-            Модуль памяти Samsung 32 ГБ DDR3 M386B4G70DM0-CMA4Q
-          </template>
-          <template v-slot:price>
-            3 980 р.
-          </template>
-        </ProductCard>
+
       </div>
     </div>
   </div>
@@ -35,6 +20,10 @@
 
 <script setup>
 import ProductCard from '@/components/UI/productCard.vue'
+import { useProductsStore } from '@/stores/products.js'
+const prodStore = useProductsStore()
+
+prodStore.loadProducts('?promo=', 'osobye-predlozheniya')
 
 </script>
 

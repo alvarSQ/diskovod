@@ -14,12 +14,13 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/category',
+      path: '/category/:slug',
       name: 'category',
-      component: CategoryView
+      component: CategoryView,
+      meta: { scrollToTop: true }
     },
     {
-      path: '/product',
+      path: '/product/:slug',
       name: 'product',
       component: ProductView
     },
@@ -36,7 +37,10 @@ const router = createRouter({
       name: "404",
       component: NotFoundView,
     },
-  ]
+  ],
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
 export default router
