@@ -50,7 +50,7 @@ const route = useRoute()
 const goCategory = (slug) => {
   varStore.menuHead()
   router.push({ name: 'category', params: { slug: slug } })
-  prodStore.loadProducts('?category=', slug)
+  prodStore.loadProducts('s?category=', slug)
 }
 
 </script>

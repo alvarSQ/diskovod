@@ -1,9 +1,9 @@
 <template>
-  <div class="wrapper-category">
+  <div class="wrapper-category" v-if="hasCategory">
     <div class="bg-category"></div>
     <div style="padding-top: 170px;"></div>
     <div style="margin-top: 20px; position: relative; height: auto;"></div>
-    <div class="container-category" v-if="hasCategory">
+    <div class="container-category">
       <div class="title-category">{{ category.name }}</div>
       <div class="content-category">
 
@@ -106,7 +106,7 @@
           </div>
         </form>
         <div class="products-category">
-          <ProductCard v-for="product in prodStore.getProductsCategory" :key="product.id">
+          <ProductCard v-for="product in prodStore.getProductsCategory" :key="product.id" :productSlug="product.slug">
             <template v-slot:title>
               {{ product.name }}
             </template>
@@ -118,8 +118,9 @@
         </div>
       </div>
     </div>
-    <notFound v-else />
+
   </div>
+  <notFound v-else />
 </template>
 
 <script setup>
@@ -138,15 +139,12 @@ const prodStore = useProductsStore()
 const router = useRouter()
 const route = useRoute()
 
-// const goProduct = () => {
-//     router.push({ name: 'product', params: { slug: question.value.id + 1 } })
-// }
 
 const slug = computed(() => route.params.slug)
 const category = computed(() => catStore.getCategoryBySlug(slug.value))
 const hasCategory = computed(() => category.value !== undefined)
 
-prodStore.loadProducts('?category=', slug.value, hasCategory.value)
+prodStore.loadProducts('s?category=', slug.value, hasCategory.value)
 
 </script>
 

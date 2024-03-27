@@ -2,32 +2,35 @@ import { defineStore } from 'pinia'
 import { useFetch } from '@vueuse/core'
 import { useVarStore } from '@/stores/vars.js'
 
-const URL = "https://diskovod.com/api/products";
+const URL = "https://diskovod.com/api/product";
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
-    products: null,
+    product: null,
     productsCategory: null,
     productsPromo: null,
   }),
   getters: {
-    getProducts: state => state.products,
+    getProduct: state => state.product,
     getProductsPromo: state => state.productsPromo,
-    getProductsCategory: state => state.productsCategory,
+    getProductsCategory: state => state.productsCategory,    
   },
   actions: {
-    async loadProducts(str, slug, has = true) {
+    async loadProducts(str = '', slug = '', has = true) {
       const varStore = useVarStore()
       if (has) {
         const { isFetching, error, data } = await useFetch(`${URL}${str}${slug}`).json()
-        varStore.isFetching = isFetching.value
-        if (str === '?promo=') {
+        if (str === 's?promo=') {
           this.productsPromo = data.value.items
         }
-        if (str === '?category=') {
+        else if (str === 's?category=') {
           this.productsCategory = data.value.items
         }
+        else {
+          this.product = data.value
+        }
+        varStore.isError = error
       }
-    }
+    },
   }
 })

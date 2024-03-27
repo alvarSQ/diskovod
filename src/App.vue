@@ -29,4 +29,3 @@ const prodStore = useProductsStore()
 catStore.loadCategories()
 
 </script>
-@/stores/categories.js

@@ -1,78 +1,77 @@
 <template>
-  <div class="product-container">
-    <div class="product">
-      <div class="product-image"></div>
+  <template v-if="!varStore.isError">
+    <div class="product-container">
+      <div class="product" v-if="hasProduct">
+        <div class=" product-image"></div>
 
-      <div class="grids">
-        <div class="grid">
-          <div class="product-cell order">
-            <p class="product-title"> Модуль памяти Samsung 16 ГБ DDR3 M393B2G70DB0-CMA </p>
-            <p class="product-subtitle">Samsung</p>
+        <div class="grids">
+          <div class="grid">
+            <div class="product-cell order">
+              <p class="product-title"> {{ product.name }} </p>
+              <p class="product-subtitle">Samsung</p>
+            </div>
+
+            <div class="product-cell order moorButton">
+              <p class="text4">В корзину</p>
+              <svg class="sm grin opacity">
+                <use xlink:href="@/assets/icons/plus.svg#plus"></use>
+              </svg>
+            </div>
+
+            <div class="product-cell order">
+              <p class="price">
+                {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
+              </p>
+            </div>
           </div>
 
-          <div class="product-cell order moorButton">
-            <p class="text4">В корзину</p>
-            <svg class="sm grin opacity">
-              <use xlink:href="@/assets/icons/plus.svg#plus"></use>
-            </svg>
-          </div>
-
-          <div class="product-cell order">
-            <p class="price"> 9 800 р. </p>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="product-cell gridSpan2">
-            <p></p>
-          </div>
-          <div class="product-cell">
-            <p>Производитель</p>
-          </div>
-          <div class="product-cell">
-            <p>Samsung</p>
-          </div>
-          <div class="product-cell">
-            <p>Тайминги(CL)</p>
-          </div>
-          <div class="product-cell">
-            <p>15</p>
-          </div>
-          <div class="product-cell">
-            <p>Объем</p>
-          </div>
-          <div class="product-cell">
-            <p>16</p>
-          </div>
-          <div class="product-cell">
-            <p>Тип памяти</p>
-          </div>
-          <div class="product-cell">
-            <p>DDR3 RDIMM</p>
-          </div>
-          <div class="product-cell">
-            <p>Тактовая частота</p>
-          </div>
-          <div class="product-cell">
-            <p>1866</p>
-          </div>
-          <div class="product-cell">
-            <p>Поддержка ECC</p>
-          </div>
-          <div class="product-cell">
-            <p>1</p>
+          <div class="grid">
+            <div class="product-cell gridSpan2">
+              <p></p>
+            </div>
+            <template v-for="item in product.properties" :key="item.id">
+              <div class="product-cell">
+                <p>{{ item.name}}</p>
+              </div>
+              <div class="product-cell">
+                <p>{{ item.value }}</p>
+              </div>
+            </template>
           </div>
         </div>
       </div>
     </div>
-
-
-  </div>
+  </template>
+  <notFound v-else />
 </template>
 
 <script setup>
+import { ref, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import notFound from '@/views/notFound.vue'
+import { useVarStore } from '@/stores/vars.js'
+import { useCategoriesStore } from '@/stores/categories.js'
+import { useProductsStore } from '@/stores/products.js'
+const varStore = useVarStore()
+const catStore = useCategoriesStore()
+const prodStore = useProductsStore()
 
+const router = useRouter()
+const route = useRoute()
 
+const hasProduct = ref(false)
+const product = ref(null)
+const slug = computed(() => route.params.slug)
+prodStore.loadProducts('/', slug.value)
+
+watch(
+  () => prodStore.getProduct,
+  () => {
+    product.value = prodStore.getProduct
+    hasProduct.value = true
+  },
+  { deep: true }
+)
 </script>
 
 <style lang="scss">

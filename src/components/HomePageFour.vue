@@ -4,7 +4,7 @@
     <div class="content4">
       <p class="ptitle text-align-center">Специальные предложения</p>
       <div class="products">
-        <ProductCard v-for="product in prodStore.getProductsPromo" :key="product.id">
+        <ProductCard v-for="product in prodStore.getProductsPromo" :key="product.id" :productSlug="product.slug">
           <template v-slot:title>
             {{ product.name}}
           </template>
@@ -23,7 +23,7 @@ import ProductCard from '@/components/UI/productCard.vue'
 import { useProductsStore } from '@/stores/products.js'
 const prodStore = useProductsStore()
 
-prodStore.loadProducts('?promo=', 'osobye-predlozheniya')
+prodStore.loadProducts('s?promo=', 'osobye-predlozheniya')
 
 </script>
 

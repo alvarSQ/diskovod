@@ -31,13 +31,23 @@
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
+import { useVarStore } from '@/stores/vars.js'
+import { useCategoriesStore } from '@/stores/categories.js'
+import { useProductsStore } from '@/stores/products.js'
+const varStore = useVarStore()
+const catStore = useCategoriesStore()
+const prodStore = useProductsStore()
 
 const router = useRouter()
 const route = useRoute()
 
-// const goProduct = () => {
-//     router.push({ name: 'product', params: { slug: question.value.id + 1 } })
-// }
+const props = defineProps({
+    productSlug: { type: String, required: true }
+})
+
+const goProduct = () => {
+    router.push({ name: 'product', params: { slug: props.productSlug } })    
+}
 </script>
 
 <style lang="scss">

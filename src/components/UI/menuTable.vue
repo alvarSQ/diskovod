@@ -1,7 +1,7 @@
 <template>
   <div class="menu_table">
     <div class="first_column cell_menu" @click="goHome">
-      <a href="#">
+      <a>
         <p class="logo">SERVE<span class="grin">RAM</span>RU</p>
       </a>
       <p class="text_logo">
@@ -54,7 +54,7 @@ const route = useRoute()
 
 const goCategory = (slug) => {
   router.push({ name: 'category', params: { slug: slug } })
-  prodStore.loadProducts('?category=', slug)
+  prodStore.loadProducts('s?category=', slug)
 }
 
 const goHome = () => router.push({ name: 'home' })
