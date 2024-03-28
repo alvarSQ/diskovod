@@ -24,7 +24,7 @@ export const useProductsStore = defineStore('products', {
           this.productsPromo = data.value.items
         }
         else if (str === 's?category=') {
-          this.productsCategory = data.value.items
+          this.productsCategory = data.value
         }
         else {
           this.product = data.value

@@ -1,130 +1,56 @@
 <template>
-  <div class="wrapper-category" v-if="hasCategory">
-    <div class="bg-category"></div>
-    <div style="padding-top: 170px;"></div>
-    <div style="margin-top: 20px; position: relative; height: auto;"></div>
-    <div class="container-category">
-      <div class="title-category">{{ category.name }}</div>
-      <div class="content-category">
+  <template v-if="!varStore.isError">
+    <div class="wrapper-category">
+      <div class="bg-category"></div>
+      <div style="padding-top: 170px;"></div>
+      <div style="margin-top: 20px; position: relative; height: auto;"></div>
+      <div class="container-category" v-if="hasCategory">
+        <div class="title-category">{{ category.name }}</div>
+        <div class="content-category">
 
-        <form class="filters">
-          <div class="sort">
-            <CustomSelect :options="['Порядок: по умолчанию', 'Сначала дешевые', 'Сначала дорогие', 'Новые']"
-              :default="'Порядок: по умолчанию'" />
-          </div>
-          <div>
-            <div class="filter">
-              <p class="filter-title">Производитель</p>
-              <div class="params">
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> Huawei </span>
-                  </label>
-                </div>
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> Samsung </span>
-                  </label>
+          <form class="filters">
+            <div class="sort">
+              <CustomSelect :options="['Порядок: по умолчанию', 'Сначала дешевые', 'Сначала дорогие', 'Новые']"
+                :default="'Порядок: по умолчанию'" />
+            </div>
+            <div>
+              <div class="filter" :class="{ 'disp-none': propert.values_count === 0 }"
+                v-for="propert in prodStore.getProductsCategory.properties" :key="propert.id">
+                <p class="filter-title">{{ propert.name }}</p>
+                <div class="params">
+                  <div class="checkbox-row" v-for="val in propert.values" :key="val">
+                    <label>
+                      <input :type="propert.filter_type" :value="val" @change="inputProp">
+                      <span class="custom-checkbox"></span>
+                      <span> {{ val }} {{ propert.measure }} </span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="filter">
-              <p class="filter-title">Объем</p>
-              <div class="params">
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> 16 ГБ </span>
-                  </label>
-                </div>
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> 17 ГБ </span>
-                  </label>
-                </div>
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> 32 ГБ </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="filter">
-              <p class="filter-title">Тип памяти</p>
-              <div class="params">
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> DDR3 LRDIMM </span>
-                  </label>
-                </div>
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> DDR3 RDIMM </span>
-                  </label>
-                </div>
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> DDR4 RDIMM </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="filter">
-              <p class="filter-title">Совместимость</p>
-              <div class="params">
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> HPE </span>
-                  </label>
-                </div>
-                <div class="checkbox-row">
-                  <label>
-                    <input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    <span class="custom-checkbox"></span>
-                    <span> Lenovo </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="products-category">
-          <ProductCard v-for="product in prodStore.getProductsCategory" :key="product.id" :productSlug="product.slug">
-            <template v-slot:title>
-              {{ product.name }}
-            </template>
-            <template v-slot:price>
-              {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
-            </template>
-          </ProductCard>
+          </form>
+          <div class="products-category">
+            <ProductCard v-for="product in prodStore.getProductsCategory.items" :key="product.id"
+              :productSlug="product.slug">
+              <template v-slot:title>
+                {{ product.name }}
+              </template>
+              <template v-slot:price>
+                {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
+              </template>
+            </ProductCard>
 
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
+    </div>
+  </template>
   <notFound v-else />
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import ProductCard from '@/components/UI/productCard.vue'
 import CustomSelect from '@/components/UI/custom-select.vue'
 import notFound from '@/views/notFound.vue'
@@ -142,9 +68,23 @@ const route = useRoute()
 
 const slug = computed(() => route.params.slug)
 const category = computed(() => catStore.getCategoryBySlug(slug.value))
-const hasCategory = computed(() => category.value !== undefined)
+const hasCategory = ref(false)
 
-prodStore.loadProducts('s?category=', slug.value, hasCategory.value)
+const inputProp = (e) => {
+  console.log(e.target.checked)
+  console.log(e.target._value)
+}
+
+
+prodStore.loadProducts('s?category=', slug.value)
+
+watch(
+  () => prodStore.getProductsCategory,
+  () => {
+    hasCategory.value = true
+  },
+  { deep: true }
+)
 
 </script>
 
@@ -234,130 +174,6 @@ prodStore.loadProducts('s?category=', slug.value, hasCategory.value)
 .sort {
   position: relative;
   margin: 0 -2px -2px 0;
-}
-
-.ng-select {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-}
-
-.ng-select-container {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: transparent;
-  width: 100%;
-  border: 2px solid white;
-  outline: none;
-  padding: 20px 30px 20px 22px;
-  color: white;
-  height: auto;
-  border-radius: 0;
-}
-
-.ng-value-container {
-  padding-left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: flex;
-  flex: 1;
-  align-items: center;
-}
-
-.ng-value {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ng-input {
-  position: absolute;
-  width: 100%;
-  top: 5px;
-  left: 0;
-  padding-left: 10px;
-  padding-right: 50px;
-
-  input {
-    box-sizing: content-box;
-    background: none transparent;
-    border: 0 none;
-    box-shadow: none;
-    outline: none;
-    padding: 0;
-    cursor: default;
-    width: 100%;
-  }
-}
-
-.ng-clear-wrapper {
-  cursor: pointer;
-  position: relative;
-  width: 17px;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.ng-clear {
-  display: inline-block;
-  font-size: 18px;
-  line-height: 1;
-  pointer-events: none;
-}
-
-.ng-arrow-wrapper {
-  cursor: pointer;
-  position: relative;
-  text-align: center;
-  -webkit-user-select: none;
-  user-select: none;
-  width: 25px;
-  padding-right: 5px;
-}
-
-.ng-arrow {
-  top: -2px;
-  border-color: transparent transparent #999;
-  border-width: 0 5px 5px;
-  pointer-events: none;
-  display: inline-block;
-  height: 0;
-  width: 0;
-  position: relative;
-}
-
-.ng-dropdown-panel {
-  border: 2px solid #48b322;
-  top: auto;
-  bottom: 3px;
-  transform: translateY(100%);
-  border-radius: 0;
-}
-
-.scroll-host {
-  overflow: hidden;
-  overflow-y: auto;
-  position: relative;
-  display: block;
-  height: auto;
-  box-sizing: border-box;
-  max-height: 240px;
-}
-
-.ng-option {
-  background-color: black;
-  color: white;
-  padding: 20px;
-  transition: .2s all;
-  border-radius: 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .filter {

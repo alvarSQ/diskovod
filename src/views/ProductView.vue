@@ -13,9 +13,7 @@
 
             <div class="product-cell order moorButton">
               <p class="text4">В корзину</p>
-              <svg class="sm grin opacity">
-                <use xlink:href="@/assets/icons/plus.svg#plus" href="@/assets/icons/plus.svg#plus"></use>
-              </svg>
+              <PlusSvg class="sm grin opacity" />              
             </div>
 
             <div class="product-cell order">
@@ -48,6 +46,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import PlusSvg from '@/components/svg/plus.vue'
 import notFound from '@/views/notFound.vue'
 import { useVarStore } from '@/stores/vars.js'
 import { useCategoriesStore } from '@/stores/categories.js'
