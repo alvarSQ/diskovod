@@ -2,32 +2,16 @@
   <div class="container mH100vh">
     <main class="main_content">
       <div class="text_block">
-        <p class="grin tShadow">Серверное оборудование</p>
+        <p class="grin">Серверное оборудование</p>
         <div class="ellips"></div>
         <div class="line"></div>
-        <p class="tShadow">
+        <p>
           Наша компания поможет вам определиться с выбором необходимого оборудования — мы
           подготовим коммерческое предложение, оформим необходимые документы, упакуем
           товар, организуем доставку в любую точку России в кратчайшие сроки.
         </p>
       </div>
-      <div class="vertical">
-        <div class="cell w66">
-          <svg class="sm">
-            <use xlink:href="@/assets/icons/whatsapp.svg#whatsapp"></use>
-          </svg>
-        </div>
-        <div class="cell w66">
-          <svg class="sm">
-            <use xlink:href="@/assets/icons/viber.svg#viber"></use>
-          </svg>
-        </div>
-        <div class="cell w66">
-          <svg class="sm">
-            <use xlink:href="@/assets/icons/telegram.svg#telegram"></use>
-          </svg>
-        </div>
-      </div>
+      <BlockSocialIcon class="vertical" />
     </main>
   </div>
   <div class="advantages">
@@ -60,9 +44,12 @@
   </div>
 </template>
 
+<script setup>
+import BlockSocialIcon from '@/components/UI/blockSocialIcon.vue'
+</script>
+
 <style lang="scss">
 .title_block {
   position: relative;
 }
-
 </style>>

@@ -9,7 +9,7 @@
           <img src="@/assets/img/sphere3(3).png" class="absL40 w44" />
         </div>
         <div class="text-blocks5">
-          <p class="slide-in">
+          <p>
             Мы&nbsp;ценим каждого нашего клиента и&nbsp;стремимся к&nbsp;долгосрочному
             сотрудничеству. Мы&nbsp;гарантируем высокий уровень сервиса, профессионализма и&nbsp;ответственности.
             Мы&nbsp;уверены, что наше серверное оборудование поможет вам повысить эффективность
@@ -48,19 +48,25 @@
   @media (max-width: 980px) {
     max-width: 620px;
   }
-    @media (max-width: 520px) {
-      max-width: 300px;
-    }
+
+  @media (max-width: 680px) {
+    max-width: 460px;
+  }
+
+  @media (max-width: 520px) {
+    max-width: 300px;
+  }
 }
 
 .content5 {
   display: flex;
   justify-content: space-between;
   padding-top: 40px;
+
   @media (max-width: 520px) {
-      flex-direction: column;
-        gap: 30px;
-    }
+    flex-direction: column;
+    gap: 30px;
+  }
 }
 
 .img5 {
@@ -80,6 +86,9 @@
     @media (min-width: 980px) and (max-width: 1240px) {
       max-width: 600px;
     }
+        @media (max-width: 680px) {
+          max-width: 300px;
+        }
   }
 
   @media (max-width: 1240px) {

@@ -8,9 +8,9 @@
 </template>
 
 <script setup>
-import HomePageOne from '@/components/HomePageOne.vue'
-import HomePageTwo from '@/components/HomePageTwo.vue'
-import HomePageThree from '@/components/HomePageThree.vue'
-import HomePageFour from '@/components/HomePageFour.vue'
-import HomePageFive from '@/components/HomePageFive.vue'
+import HomePageOne from '@/components/HomePageMine.vue'
+import HomePageTwo from '@/components/HomePageSolutions.vue'
+import HomePageThree from '@/components/HomePageAssortment_logo.vue'
+import HomePageFour from '@/components/HomePagePromo.vue'
+import HomePageFive from '@/components/HomePageInfo.vue'
 </script>

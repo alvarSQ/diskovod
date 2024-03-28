@@ -80,6 +80,11 @@ const goHome = () => router.push({ name: 'home' })
     grid-template-columns: 3fr auto auto;
   }
 
+  @media (max-width: 680px) {
+    width: 460px;
+    grid-template-columns: 2fr auto auto;
+  }
+
   @media (max-width: 520px) {
     width: 300px;
   }
@@ -151,7 +156,7 @@ const goHome = () => router.push({ name: 'home' })
   line-height: normal;
 
 
-  @media (max-width: 680px) {
+  @media (max-width: 520px) {
     display: none;
   }
 }
@@ -197,4 +202,3 @@ const goHome = () => router.push({ name: 'home' })
   display: none;
 }
 </style>
-@/stores/categories.js

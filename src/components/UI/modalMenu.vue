@@ -1,12 +1,10 @@
 <template>
   <div class="modal-wrapper modal-overlay">
     <div class="modal">
-      <div _ngcontent-ng-c3841248351="" class="modal-container">
-        <div _ngcontent-ng-c3841248351="" class="title-modal">
+      <div class="modal-container">
+        <div class="title-modal">
           <p>Меню</p>
-          <svg class="cross" @click="varStore.menuHead">
-            <use xlink:href="@/assets/icons/close.svg#close"></use>
-          </svg>
+          <CloseSvg class="cross" @click="varStore.menuHead" />
         </div>
         <div class="content-modal">
           <a v-for="category in catStore.getCategories" :key="category.id" class="cell-modal"
@@ -36,6 +34,7 @@
 </template>
 
 <script setup>
+import CloseSvg from '@/components/svg/close.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useVarStore } from '@/stores/vars.js'
 import { useCategoriesStore } from '@/stores/categories.js'
@@ -162,4 +161,4 @@ const goCategory = (slug) => {
   background-color: #0006;
   z-index: 99;
 }
-</style>@/stores/categories.js
+</style>

@@ -14,7 +14,7 @@
             <div class="product-cell order moorButton">
               <p class="text4">В корзину</p>
               <svg class="sm grin opacity">
-                <use xlink:href="@/assets/icons/plus.svg#plus"></use>
+                <use xlink:href="@/assets/icons/plus.svg#plus" href="@/assets/icons/plus.svg#plus"></use>
               </svg>
             </div>
 
@@ -129,7 +129,7 @@ watch(
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(undefined);
+  // background-image: url(undefined);
   opacity: 0;
 
   @media (max-width: 1240px) {

@@ -6,7 +6,7 @@
       <div class="products">
         <ProductCard v-for="product in prodStore.getProductsPromo" :key="product.id" :productSlug="product.slug">
           <template v-slot:title>
-            {{ product.name}}
+            {{ product.name }}
           </template>
           <template v-slot:price>
             {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
@@ -61,6 +61,10 @@ prodStore.loadProducts('s?promo=', 'osobye-predlozheniya')
 
   @media (max-width: 980px) {
     max-width: 620px;
+  }
+
+  @media (max-width: 680px) {
+    max-width: 460px;
   }
 
   @media (max-width: 520px) {

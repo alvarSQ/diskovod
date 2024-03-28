@@ -2,7 +2,7 @@
     <div class="table4">
         <div class="column">
             <div class="cell4">
-                <div class="imageProduct" style="background-image: url(&quot;undefined&quot;);">
+                <div class="imageProduct">
                 </div>
             </div>
             <div class="cell4">
@@ -15,21 +15,19 @@
             </div>
             <div class="cell4 padd20 moorButton">
                 <p class="text4">В корзину</p>
-                <svg class="sm grin opacity">
-                    <use xlink:href="@/assets/icons/plus.svg#plus"></use>
-                </svg>
+                <PlusSvg class="sm grin opacity" />
             </div>
             <a class="cell4 padd20 moorButton" href="#" @click="goProduct">
                 <p class="text4">Подробнее</p>
-                <svg class="sm grin opacity">
-                    <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
-                </svg>
+                <ArrowSvg class="sm grin opacity" />
             </a>
         </div>
     </div>
 </template>
 
 <script setup>
+import PlusSvg from '@/components/svg/plus.vue'
+import ArrowSvg from '@/components/svg/arrow.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useVarStore } from '@/stores/vars.js'
 import { useCategoriesStore } from '@/stores/categories.js'

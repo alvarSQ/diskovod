@@ -10,7 +10,7 @@
 }
 
 .gridSpan2 {
-  grid-column: span 2;
+    grid-column: span 2;
 }
 
 .padd20 {
@@ -26,7 +26,7 @@
 }
 
 .mH100vh {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 .absL20 {
@@ -51,9 +51,8 @@
 
 .text-align-center {
     @media (max-width: 520px) {
-    text-align: center;
-  }  
-    
+        text-align: center;
+    }
 }
 
 .grin {
@@ -76,18 +75,12 @@
 
 .opacity {
     opacity: 0;
-    transition: all .4s ease-in-out; 
+    transition: all 0.4s ease-in-out;
 }
 
-.translate {
-    transition: transform .4s ease-in-out;       
-    &:hover {
-        transform: translate(-40%);
-    }
-}
 
 .mW640 {
- max-width: 640px;
+    max-width: 640px;
 }
 
 .mH90 {

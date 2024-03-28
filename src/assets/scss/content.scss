@@ -63,7 +63,7 @@
             font-size: 2.5em;
             line-height: 44px;
         }
-        @media (max-width: 520px) {
+        @media (max-width: 680px) {
             font-size: 32px;
         }
     }
@@ -72,6 +72,10 @@
         font-size: 15px;
         line-height: normal;
         z-index: 1;
+    }
+
+    @media (max-width: 680px) {
+        padding-top: 300px;
     }
     @media (max-width: 520px) {
         padding-top: 280px;
@@ -148,10 +152,13 @@
     height: 444px;
     position: absolute;
     background-image: url("@/assets/img/ellipse2.png");
+    @media (max-width: 680px) {
+        top: 140px;
+    }
     @media (max-width: 520px) {
         top: 97px;
         left: -276px;
-    }    
+    }
 }
 
 .advantages {
@@ -189,6 +196,11 @@
         grid-template-columns: repeat(1, 1fr);
         padding: 0 0 40px;
     }
+
+    @media (max-width: 680px) {
+        width: 460px;
+    }
+
     @media (max-width: 520px) {
         max-width: 300px;
     }

@@ -25,11 +25,9 @@
             <p class="title2 mH90">Серверные SSD накопители</p>
             <p class="text">Надежное хранение и&nbsp;быстрый доступ к&nbsp;данным</p>
           </div>
-          <a class="cell2 spaseBetween" href="#">
+          <a class="cell2 spaseBetween translate-arrow" href="./category/servernye-ssd-nakopiteli">
             <p class="title2">Перейти</p>
-            <svg class="sm grin translate">
-              <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
-            </svg>
+            <ArrowSvg class="sm grin" />
           </a>
         </div>
         <div class="column">
@@ -40,11 +38,9 @@
             <p class="title2 mH90">Оперативная память</p>
             <p class="text">Надежное хранение и&nbsp;быстрый доступ к&nbsp;данным</p>
           </div>
-          <a class="cell2 spaseBetween" href="#">
+          <a class="cell2 spaseBetween translate-arrow" href="./category/operativnaya-pamyat">
             <p class="title2">Перейти</p>
-            <svg class="sm grin translate">
-              <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
-            </svg>
+            <ArrowSvg class="sm grin" />
           </a>
         </div>
         <div class="column">
@@ -57,17 +53,19 @@
               Надежное хранение и&nbsp;быстрый доступ к&nbsp;данным
             </p>
           </div>
-          <a class="cell2 spaseBetween" href="#">
+          <a class="cell2 spaseBetween translate-arrow" href="./category/sistemy-hraneniya-dannyh">
             <p class="title2">Перейти</p>
-            <svg class="sm grin translate">
-              <use xlink:href="@/assets/icons/arrow.svg#arrow"></use>
-            </svg>
+            <ArrowSvg class="sm grin" />
           </a>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import ArrowSvg from '@/components/svg/arrow.vue'
+</script>
 
 <style lang="scss">
 .text_block2 {
@@ -77,5 +75,16 @@
         flex-direction: column;
           gap: 20px;
       }
+}
+
+.translate-arrow {
+  .sm {
+    padding-top: 4px;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  &:hover .sm {
+    transform: translate(-40%);
+  }
 }
 </style>

@@ -2,52 +2,33 @@
   <div class="container3">
     <div class="content">
       <p class="ptitle">Широкий ассортимент продукции</p>
-      <!--  -->
       <div class="grid-container">
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Hewlett_Packard_Enterprise_logo.svg#Hewlett_Packard_Enterprise_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <HPlogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Dell_Logo.svg#Dell_Logo"></use>
-          </svg>
+        <div class="logo-company">
+          <Delllogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/IBM_logo.svg#IBM_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <IBMlogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Intel_logo.svg#Intel_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <Intellogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Huawei_logo.svg#Huawei_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <Huaweilogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Micron_Technology_logo.svg#Micron_Technology_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <MicronTLogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Kingston_logo.svg#Kingston_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <Kingstonlogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/SK_Hynix_logo.svg#SK_Hynix_logo"></use>
-          </svg>
+        <div class="logo-company">
+          <SKHynixlogo class="logo-cont" />
         </div>
-        <div class="logoCo">
-          <svg class="lg">
-            <use xlink:href="@/assets/icons/Samsung_Logo.svg#Samsung_Logo"></use>
-          </svg>
+        <div class="logo-company">
+          <Samsunglogo class="logo-cont" />
         </div>
         <p>
           Мы&nbsp;работаем с&nbsp;ведущими производителями, чтобы предложить нашим
@@ -57,6 +38,18 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import HPlogo from '@/components/svg/assortment_logo/Hewlett_Packard_Enterprise_logo.vue'
+import Delllogo from '@/components/svg/assortment_logo/Dell_Logo.vue'
+import IBMlogo from '@/components/svg/assortment_logo/IBM_logo.vue'
+import Intellogo from '@/components/svg/assortment_logo/Intel_logo.vue'
+import Huaweilogo from '@/components/svg/assortment_logo/Huawei_logo.vue'
+import MicronTLogo from '@/components/svg/assortment_logo/Micron_Technology_logo.vue'
+import Kingstonlogo from '@/components/svg/assortment_logo/Kingston_logo.vue'
+import SKHynixlogo from '@/components/svg/assortment_logo/SK_Hynix_logo.vue'
+import Samsunglogo from '@/components/svg/assortment_logo/Samsung_Logo.vue'
+</script>
 
 <style lang="scss">
 .container3 {
@@ -78,6 +71,10 @@
 
   @media (max-width: 980px) {
     max-width: 620px;
+  }
+
+  @media (max-width: 680px) {
+    max-width: 460px;
   }
 
   @media (max-width: 520px) {
@@ -117,6 +114,10 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
+  @media (max-width: 680px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   @media (max-width: 520px) {
     gap: 20px;
     padding-top: 40px;
@@ -124,14 +125,14 @@
   }
 }
 
-.logoCo {
+.logo-company {
   background-color: #202020;
   width: 100%;
   height: 111px;
   position: relative;
 }
 
-.lg {
+.logo-cont {
   width: 160px;
   height: 160px;
   position: absolute;

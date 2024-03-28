@@ -12,26 +12,7 @@
         <div class="cell">
           <a href="mailto:sales@serveram.ru">sales@serveram.ru</a>
         </div>
-        <div class="horizontal">
-          <a href="https://wa.me/79223275348" target="_blank" rel="nofollow noopener" aria-label="WhatsApp"
-            title="WhatsApp" class="cell_social">
-            <svg class="sm">
-              <use xlink:href="@/assets/icons/whatsapp.svg#whatsapp"></use>
-            </svg>
-          </a>
-          <a href="viber://chat?number=%2B79223275348" target="_blank" rel="nofollow" aria-label="Viber" title="Viber"
-            class="cell_social">
-            <svg class="sm">
-              <use xlink:href="@/assets/icons/viber.svg#viber"></use>
-            </svg>
-          </a>
-          <a href="https://t.me/serveramru" target="_blank" rel="nofollow noopener" aria-label="Telegram"
-            title="Telegram" class="cell_social">
-            <svg class="sm">
-              <use xlink:href="@/assets/icons/telegram.svg#telegram"></use>
-            </svg>
-          </a>
-        </div>
+          <BlockSocialIcon class="horizontal" />
       </div>
     </div>
   </footer>
@@ -39,6 +20,7 @@
 
 <script setup>
 import MenuTable from '@/components/UI/menuTable.vue'
+import BlockSocialIcon from '@/components/UI/blockSocialIcon.vue'
 </script>
 
 <style lang="scss">
@@ -78,22 +60,11 @@ footer {
 .horizontal {
   display: flex;
   flex-direction: row;
-}
-
-.cell_social {
-  border: 2px solid white;
-  margin: 0 -2px -2px 0;
-  width: 66px;
-  height: 66px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:hover .sm {
-    fill: #48b322;
+  .cell_social {
+    @media (max-width: 980px) {
+        width: 100%;
+      }
   }
-  @media (max-width: 980px) {
-      width: 100%;
-    }
 }
 
 </style>
