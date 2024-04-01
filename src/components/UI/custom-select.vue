@@ -4,7 +4,8 @@
       {{ selected }}
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div v-for="(option, i) of options" :key="i" @click="selected = option; open = false;"
+      <div v-for="(option, i) of options" :key="i"
+        @click="selected = option; open = false; $emit('selectSort', selected)"
         :class="{ itemsGreen: option === selected }">
         {{ option }}
       </div>
@@ -31,6 +32,8 @@ const props = defineProps({
     default: 0,
   },
 })
+
+// const emit = defineEmits(['change'])
 
 const selected = ref(props.default ? props.default : (props.options.length > 0 ? props.options[0] : null))
 const open = ref(false)

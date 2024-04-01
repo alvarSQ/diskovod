@@ -61,12 +61,12 @@ const route = useRoute()
 const hasProduct = ref(false)
 const product = ref(null)
 const slug = computed(() => route.params.slug)
-prodStore.loadProducts('/', slug.value)
+prodStore.loadProducts(`/${slug.value}`)
 
 watch(
-  () => prodStore.getProduct,
+  () => prodStore.getProducts,
   () => {
-    product.value = prodStore.getProduct
+    product.value = prodStore.getProducts
     hasProduct.value = true
   },
   { deep: true }

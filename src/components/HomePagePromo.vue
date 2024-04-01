@@ -4,26 +4,39 @@
     <div class="content4">
       <p class="ptitle text-align-center">Специальные предложения</p>
       <div class="products">
-        <ProductCard v-for="product in prodStore.getProductsPromo" :key="product.id" :productSlug="product.slug">
-          <template v-slot:title>
-            {{ product.name }}
-          </template>
-          <template v-slot:price>
-            {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
-          </template>
-        </ProductCard>
-
+        <template v-if="hasPromo">
+          <ProductCard v-for=" product in prodStore.getProducts.items" :key="product.id" :productSlug="product.slug">
+            <template v-slot:title>
+              {{ product.name }}
+            </template>
+            <template v-slot:price>
+              {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
+            </template>
+          </ProductCard>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
 import ProductCard from '@/components/UI/productCard.vue'
 import { useProductsStore } from '@/stores/products.js'
 const prodStore = useProductsStore()
 
-prodStore.loadProducts('s?promo=', 'osobye-predlozheniya')
+const hasPromo = ref(false)
+
+prodStore.loadProducts('s?promo=osobye-predlozheniya')
+
+watch(
+  () => prodStore.getProducts,
+  () => {
+    hasPromo.value = true
+  },
+  { deep: true }
+)
+
 
 </script>
 
@@ -76,6 +89,7 @@ prodStore.loadProducts('s?promo=', 'osobye-predlozheniya')
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding-top: 70px;
+  min-height: 538px;
   gap: 40px;
 
   @media (max-width: 1240px) {
@@ -87,4 +101,3 @@ prodStore.loadProducts('s?promo=', 'osobye-predlozheniya')
   }
 }
 </style>
->

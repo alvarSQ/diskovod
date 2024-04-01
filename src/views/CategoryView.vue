@@ -11,18 +11,19 @@
           <form class="filters">
             <div class="sort">
               <CustomSelect :options="['Порядок: по умолчанию', 'Сначала дешевые', 'Сначала дорогие', 'Новые']"
-                :default="'Порядок: по умолчанию'" />
+                :default="selected" @selectSort="selectSort" />
             </div>
             <div>
               <div class="filter" :class="{ 'disp-none': propert.values_count === 0 }"
-                v-for="propert in prodStore.getProductsCategory.properties" :key="propert.id">
+                v-for="propert in prodStore.getProducts.properties" :key="propert.id">
                 <p class="filter-title">{{ propert.name }}</p>
                 <div class="params">
-                  <div class="checkbox-row" v-for="val in propert.values" :key="val">
+                  <div class="checkbox-row" v-for="(value, index) in propert.values" :key="propert.key_values[index]">
                     <label>
-                      <input :type="propert.filter_type" :value="val" @change="inputProp">
+                      <input :type="propert.filter_type" :checked="isChecked(value)" :value="value"
+                        @change="inputProp(propert.id, value, $event)">
                       <span class="custom-checkbox"></span>
-                      <span> {{ val }} {{ propert.measure }} </span>
+                      <span> {{ value }} {{ propert.measure }} </span>
                     </label>
                   </div>
                 </div>
@@ -30,8 +31,7 @@
             </div>
           </form>
           <div class="products-category">
-            <ProductCard v-for="product in prodStore.getProductsCategory.items" :key="product.id"
-              :productSlug="product.slug">
+            <ProductCard v-for="product in prodStore.getProducts.items" :key="product.id" :productSlug="product.slug">
               <template v-slot:title>
                 {{ product.name }}
               </template>
@@ -51,6 +51,7 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue'
+import qs from 'qs'
 import ProductCard from '@/components/UI/productCard.vue'
 import CustomSelect from '@/components/UI/custom-select.vue'
 import notFound from '@/views/notFound.vue'
@@ -65,21 +66,97 @@ const prodStore = useProductsStore()
 const router = useRouter()
 const route = useRoute()
 
+const querySort = ref('no')
+const queryStringRourer = ref([])
+const hasCategory = ref(false)
+const stringQuery = ref([])
 
 const slug = computed(() => route.params.slug)
 const category = computed(() => catStore.getCategoryBySlug(slug.value))
-const hasCategory = ref(false)
 
-const inputProp = (e) => {
-  console.log(e.target.checked)
-  console.log(e.target._value)
+const queryFiltersSort = computed(() => {
+  let arr = null
+  let filStr = ''
+  if (route.query.filter) {
+    if (typeof (route.query.filter) === 'string') {
+      arr = [route.query.filter]
+      arr = arr.map(el => el.split('-'))
+    }
+    else {
+      arr = route.query.filter.map(el => el.split('-'))
+    }
+    arr.map(el => {
+      filStr += `&filter[property][${el[0]}][]=${el[1]}`
+    })
+    stringQuery.value = arr
+  }
+  return filStr += `&sort=${route.query.sort ? route.query.sort : 'no'}`
+})
+
+const isChecked = (value) => {
+  value = value.toLowerCase().replaceAll(' ', '')
+  return stringQuery.value.some(el => el[1] === value)
 }
 
+const selected = computed(() => {
+  if (route.query.sort === 'price|asc') {
+    return 'Сначала дешевые'
+  } if (route.query.sort === 'price|desc') {
+    return 'Сначала дорогие'
+  } if (route.query.sort === 'new') {
+    return 'Новые'
+  }
+  return 'Порядок: по умолчанию'
+})
 
-prodStore.loadProducts('s?category=', slug.value)
+const inputProp = (id, value, e) => {
+  value = value.toLowerCase().replaceAll(' ', '')  
+  querySort.value = route.query.sort
+  let arrFiltr = []
+  if (route.query.filter) {
+    typeof (route.query.filter) === 'string' ? arrFiltr = [[route.query.filter]] : arrFiltr = route.query.filter.map(el => [el])
+  }
+  if (e.target.checked) {
+    arrFiltr.push([`${id}-${value}`])
+    queryStringRourer.value = arrFiltr
+  }
+  else {
+    queryStringRourer.value = arrFiltr
+    queryStringRourer.value = queryStringRourer.value.filter((el) => el[0] !== `${id}-${value}`)
+  }
+  addQuery()
+}
+
+const selectSort = (select) => {
+  if (select === 'Порядок: по умолчанию') {
+    querySort.value = 'no'
+  }
+  if (select === 'Сначала дешевые') {
+    querySort.value = 'price|asc'
+  }
+  if (select === 'Сначала дорогие') {
+    querySort.value = 'price|desc'
+  }
+  if (select === 'Новые') {
+    querySort.value = 'new'
+  }
+  queryStringRourer.value = route.query.filter
+  addQuery()
+};
+
+const addQuery = () => {
+  router.push({
+    path: `/category/${slug.value}`, query: { filter: queryStringRourer.value, sort: querySort.value }
+  })
+  setTimeout(() => {
+    prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)
+  }, 1)
+}
+
+prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)
 
 watch(
-  () => prodStore.getProductsCategory,
+  () => prodStore.getProducts,
   () => {
     hasCategory.value = true
   },

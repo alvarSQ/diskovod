@@ -6,31 +6,17 @@ const URL = "https://diskovod.com/api/product";
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
-    product: null,
-    productsCategory: null,
-    productsPromo: null,
+    products: null,
   }),
   getters: {
-    getProduct: state => state.product,
-    getProductsPromo: state => state.productsPromo,
-    getProductsCategory: state => state.productsCategory,    
+    getProducts: state => state.products,
   },
   actions: {
-    async loadProducts(str = '', slug = '', has = true) {
+    async loadProducts(slug) {
       const varStore = useVarStore()
-      if (has) {
-        const { isFetching, error, data } = await useFetch(`${URL}${str}${slug}`).json()
-        if (str === 's?promo=') {
-          this.productsPromo = data.value.items
-        }
-        else if (str === 's?category=') {
-          this.productsCategory = data.value
-        }
-        else {
-          this.product = data.value
-        }
-        varStore.isError = error
-      }
-    },
-  }
+      const { isFetching, error, data } = await useFetch(`${URL}${slug}`).json()
+      this.products = data.value
+      varStore.isError = error
+    }
+  },
 })

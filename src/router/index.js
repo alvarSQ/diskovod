@@ -16,8 +16,7 @@ const router = createRouter({
     {
       path: '/category/:slug',
       name: 'category',
-      component: CategoryView,
-      meta: { scrollToTop: true }
+      component: CategoryView
     },
     {
       path: '/product/:slug',
