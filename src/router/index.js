@@ -37,9 +37,9 @@ const router = createRouter({
       component: NotFoundView,
     },
   ],
-  scrollBehavior() {
-    return { top: 0 }
-  },
+  // scrollBehavior() {
+  //   return { top: 0 }
+  // },
 })
 
 export default router

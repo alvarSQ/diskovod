@@ -7,7 +7,6 @@
       <div class="container-category" v-if="hasCategory">
         <div class="title-category">{{ category.name }}</div>
         <div class="content-category">
-
           <form class="filters">
             <div class="sort">
               <CustomSelect :options="['Порядок: по умолчанию', 'Сначала дешевые', 'Сначала дорогие', 'Новые']"
@@ -30,16 +29,18 @@
               </div>
             </div>
           </form>
-          <div class="products-category">
-            <ProductCard v-for="product in prodStore.getProducts.items" :key="product.id" :productSlug="product.slug">
-              <template v-slot:title>
-                {{ product.name }}
-              </template>
-              <template v-slot:price>
-                {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
-              </template>
-            </ProductCard>
-
+          <div style="position: relative;">
+            <Preloader v-if="isPreloader" />
+            <div class="products-category" v-else>
+              <ProductCard v-for="product in prodStore.getProducts.items" :key="product.id" :productSlug="product.slug">
+                <template v-slot:title>
+                  {{ product.name }}
+                </template>
+                <template v-slot:price>
+                  {{ product.offers ? `${product.offers[0].price_value.toLocaleString('ru-RU')} р.` : 'нет в наличии' }}
+                </template>
+              </ProductCard>
+            </div>
           </div>
         </div>
       </div>
@@ -50,9 +51,10 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import qs from 'qs'
 import ProductCard from '@/components/UI/productCard.vue'
+import Preloader from '@/components/UI/preloader.vue'
 import CustomSelect from '@/components/UI/custom-select.vue'
 import notFound from '@/views/notFound.vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -70,6 +72,7 @@ const querySort = ref('no')
 const queryStringRourer = ref([])
 const hasCategory = ref(false)
 const stringQuery = ref([])
+const isPreloader = ref(false)
 
 const slug = computed(() => route.params.slug)
 const category = computed(() => catStore.getCategoryBySlug(slug.value))
@@ -110,7 +113,7 @@ const selected = computed(() => {
 })
 
 const inputProp = (id, value, e) => {
-  value = value.toLowerCase().replaceAll(' ', '')  
+  value = value.toLowerCase().replaceAll(' ', '')
   querySort.value = route.query.sort
   let arrFiltr = []
   if (route.query.filter) {
@@ -145,12 +148,13 @@ const selectSort = (select) => {
 };
 
 const addQuery = () => {
+  isPreloader.value = true
   router.push({
     path: `/category/${slug.value}`, query: { filter: queryStringRourer.value, sort: querySort.value }
   })
   setTimeout(() => {
-    prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)
-  }, 1)
+    prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)    
+  }, 1000)
 }
 
 prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)
@@ -159,6 +163,7 @@ watch(
   () => prodStore.getProducts,
   () => {
     hasCategory.value = true
+    isPreloader.value = false
   },
   { deep: true }
 )

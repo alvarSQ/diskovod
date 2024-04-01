@@ -21,10 +21,8 @@ import Footer from '@/components/Footer.vue'
 import ModalMenu from '@/components/UI/modalMenu.vue'
 import { useVarStore } from '@/stores/vars.js'
 import { useCategoriesStore } from '@/stores/categories.js'
-import { useProductsStore } from '@/stores/products.js'
 const varStore = useVarStore()
 const catStore = useCategoriesStore()
-const prodStore = useProductsStore()
 
 catStore.loadCategories()
 
