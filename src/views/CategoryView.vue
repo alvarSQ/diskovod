@@ -52,7 +52,6 @@
 
 <script setup>
 import { ref, watch, computed, onMounted } from 'vue'
-import qs from 'qs'
 import ProductCard from '@/components/UI/productCard.vue'
 import Preloader from '@/components/UI/preloader.vue'
 import CustomSelect from '@/components/UI/custom-select.vue'
@@ -73,13 +72,18 @@ const queryStringRourer = ref([])
 const hasCategory = ref(false)
 const stringQuery = ref([])
 const isPreloader = ref(false)
+const paramAxios = ref(null)
 
 const slug = computed(() => route.params.slug)
 const category = computed(() => catStore.getCategoryBySlug(slug.value))
 
 const queryFiltersSort = computed(() => {
+
+  let params = new URLSearchParams()
+  params.append('category', slug.value)
+
   let arr = null
-  let filStr = ''
+  
   if (route.query.filter) {
     if (typeof (route.query.filter) === 'string') {
       arr = [route.query.filter]
@@ -89,11 +93,14 @@ const queryFiltersSort = computed(() => {
       arr = route.query.filter.map(el => el.split('-'))
     }
     arr.map(el => {
-      filStr += `&filter[property][${el[0]}][]=${el[1]}`
+      params.append(`filter[property][${el[0]}][]`, el[1])
     })
     stringQuery.value = arr
-  }
-  return filStr += `&sort=${route.query.sort ? route.query.sort : 'no'}`
+  }  
+
+  params.append('sort', `${route.query.sort ? route.query.sort : 'no'}`)
+
+  return paramAxios.value = params
 })
 
 const isChecked = (value) => {
@@ -153,11 +160,11 @@ const addQuery = () => {
     path: `/category/${slug.value}`, query: { filter: queryStringRourer.value, sort: querySort.value }
   })
   setTimeout(() => {
-    prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)    
-  }, 1000)
+    prodStore.loadProducts(queryFiltersSort.value)    
+  }, 1)
 }
 
-prodStore.loadProducts(`s?category=${slug.value}${queryFiltersSort.value}`)
+prodStore.loadProducts(queryFiltersSort.value)
 
 watch(
   () => prodStore.getProducts,

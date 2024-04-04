@@ -54,7 +54,8 @@ const route = useRoute()
 
 const goCategory = (slug) => {
   router.push({ name: 'category', params: { slug: slug } })
-  prodStore.loadProducts(`s?category=${slug}`)
+  prodStore.loadProducts(new URLSearchParams(`category=${slug}`))
+  varStore.isError = false
 }
 
 const goHome = () => router.push({ name: 'home' })

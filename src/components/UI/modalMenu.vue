@@ -49,7 +49,8 @@ const route = useRoute()
 const goCategory = (slug) => {
   varStore.menuHead()
   router.push({ name: 'category', params: { slug: slug } })
-  prodStore.loadProducts(`s?category=${slug}`)
+  prodStore.loadProducts(new URLSearchParams(`category=${slug}`))
+  varStore.isError = false
 }
 
 </script>

@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
-import { useFetch } from '@vueuse/core'
 import { useVarStore } from '@/stores/vars.js'
+import axios from 'axios'
 
-const URL = "https://diskovod.com/api/product";
+const URL_PRODUCTS = "https://diskovod.com/api/products";
+const URL_PRODUCT = "https://diskovod.com/api/product/";
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
@@ -11,12 +12,24 @@ export const useProductsStore = defineStore('products', {
   getters: {
     getProducts: state => state.products,
   },
-  actions: {
-    async loadProducts(slug) {
+  actions: {    
+    async loadProducts(queryParameters) {
       const varStore = useVarStore()
-      const { isFetching, error, data } = await useFetch(`${URL}${slug}`).json()
-      this.products = data.value
-      varStore.isError = error
+      try {
+        const response = await axios.get(URL_PRODUCTS, { params: queryParameters } )
+        this.products = response.data
+      } catch (e) {
+        varStore.isError = e
+      }
+    },
+    async loadProduct(slug) {
+      const varStore = useVarStore()
+      try {
+        const response = await axios.get(`${URL_PRODUCT}${slug}`)
+        this.products = response.data
+      } catch (e) {
+        varStore.isError = e
+      }
     }
   },
 })

@@ -13,7 +13,7 @@
 
             <div class="product-cell order moorButton">
               <p class="text4">В корзину</p>
-              <PlusSvg class="sm grin opacity" />              
+              <PlusSvg class="sm grin opacity" />
             </div>
 
             <div class="product-cell order">
@@ -25,7 +25,7 @@
 
           <div class="grid">
             <div class="product-cell gridSpan2">
-              <p></p>
+              <p>{{ product.description }}</p>
             </div>
             <template v-for="item in product.properties" :key="item.id">
               <div class="product-cell">
@@ -61,7 +61,7 @@ const route = useRoute()
 const hasProduct = ref(false)
 const product = ref(null)
 const slug = computed(() => route.params.slug)
-prodStore.loadProducts(`/${slug.value}`)
+prodStore.loadProduct(slug.value)
 
 watch(
   () => prodStore.getProducts,
