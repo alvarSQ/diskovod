@@ -82,8 +82,7 @@ const queryFiltersSort = computed(() => {
   let params = new URLSearchParams()
   params.append('category', slug.value)
 
-  let arr = null
-  
+  let arr = null  
   if (route.query.filter) {
     if (typeof (route.query.filter) === 'string') {
       arr = [route.query.filter]

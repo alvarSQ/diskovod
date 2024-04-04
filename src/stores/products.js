@@ -8,9 +8,11 @@ const URL_PRODUCT = "https://diskovod.com/api/product/";
 export const useProductsStore = defineStore('products', {
   state: () => ({
     products: null,
+    product: null,
   }),
   getters: {
     getProducts: state => state.products,
+    getProduct: state => state.product,
   },
   actions: {    
     async loadProducts(queryParameters) {
@@ -26,7 +28,7 @@ export const useProductsStore = defineStore('products', {
       const varStore = useVarStore()
       try {
         const response = await axios.get(`${URL_PRODUCT}${slug}`)
-        this.products = response.data
+        this.product = response.data
       } catch (e) {
         varStore.isError = e
       }

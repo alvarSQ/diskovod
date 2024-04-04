@@ -64,9 +64,9 @@ const slug = computed(() => route.params.slug)
 prodStore.loadProduct(slug.value)
 
 watch(
-  () => prodStore.getProducts,
+  () => prodStore.getProduct,
   () => {
-    product.value = prodStore.getProducts
+    product.value = prodStore.getProduct
     hasProduct.value = true
   },
   { deep: true }
@@ -128,7 +128,6 @@ watch(
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  // background-image: url(undefined);
   opacity: 0;
 
   @media (max-width: 1240px) {
