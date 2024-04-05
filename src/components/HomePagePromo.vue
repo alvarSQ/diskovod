@@ -27,8 +27,7 @@ const prodStore = useProductsStore()
 
 const hasPromo = ref(false)
 
-prodStore.loadProducts('s?promo=osobye-predlozheniya')
-
+prodStore.loadProducts(new URLSearchParams('promo=osobye-predlozheniya'))
 watch(
   () => prodStore.getProducts,
   () => {
