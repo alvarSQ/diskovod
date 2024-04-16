@@ -4,7 +4,7 @@
 
 ## Описание учебных задач:
 
-Использовались: Vue 3 + Vite, Router, Pinia, SASS, SVG;
+Использовались: Vue 3 + Vite, Router, Pinia, SASS, SVG, Composition API;
 
 Верстка делалась с нуля, дизайн брался с уже готового сайта;
 

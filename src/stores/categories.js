@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useFetch } from '@vueuse/core'
 import { useVarStore } from '@/stores/vars.js'
 
-const URL = "https://diskovod.com/api/categories";
+const URL = "https://diskovod.pro/api/categories";
 
 export const useCategoriesStore = defineStore('categories', {
   state: () => ({
@@ -18,6 +18,7 @@ export const useCategoriesStore = defineStore('categories', {
       const { isFetching, error, data } = await useFetch(URL).json()
       varStore.isFetching = isFetching.value
       this.categories = data.value
+      varStore.isError = error.value
     }
   }
 })
