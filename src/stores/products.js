@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 import { useVarStore } from '@/stores/vars.js'
 import axios from 'axios'
 
-const URL_PRODUCTS = "https://diskovod.pro/api/products";
-const URL_PRODUCT = "https://diskovod.pro/api/product/";
+const URL_PRODUCTS = "https://diskovod.com/api/products";
+const URL_PRODUCT = "https://diskovod.com/api/product/";
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
