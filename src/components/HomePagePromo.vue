@@ -5,7 +5,8 @@
       <p class="ptitle text-align-center">Специальные предложения</p>
       <div class="products">
         <template v-if="hasPromo">
-          <ProductCard v-for=" product in prodStore.getProducts.items" :key="product.id" :productSlug="product.slug">
+          <ProductCard v-for=" product in prodStore.getProductsPromo.items" :key="product.id"
+            :productSlug="product.slug">
             <template v-slot:title>
               {{ product.name }}
             </template>
@@ -29,7 +30,7 @@ const hasPromo = ref(false)
 
 prodStore.loadProducts(new URLSearchParams('promo=osobye-predlozheniya'))
 watch(
-  () => prodStore.getProducts,
+  () => prodStore.getProductsPromo,
   () => {
     hasPromo.value = true
   },
