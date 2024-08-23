@@ -103,7 +103,9 @@ const queryFiltersSort = computed(() => {
 })
 
 const isChecked = (value) => {
-  value = value.toLowerCase().replaceAll(' ', '')
+  value = value
+    .toLowerCase()
+    .replace(' ', '')
   return stringQuery.value.some(el => el[1] === value)
 }
 
@@ -118,8 +120,13 @@ const selected = computed(() => {
   return 'Порядок: по умолчанию'
 })
 
+const regex = /[-() "]/g;
+
 const inputProp = (id, value, e) => {
-  value = value.toLowerCase().replaceAll(' ', '')
+  value = value
+    .toLowerCase()
+    .replace('.', 'x')
+    .replace(regex, '')
   querySort.value = route.query.sort
   let arrFiltr = []
   if (route.query.filter) {
