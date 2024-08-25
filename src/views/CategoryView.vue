@@ -102,10 +102,13 @@ const queryFiltersSort = computed(() => {
   return paramAxios.value = params
 })
 
+const regex = /[-() "]/g;
+
 const isChecked = (value) => {
   value = value
     .toLowerCase()
-    .replace(' ', '')
+    .replace('.', 'x')
+    .replace(regex, '')
   return stringQuery.value.some(el => el[1] === value)
 }
 
@@ -119,8 +122,6 @@ const selected = computed(() => {
   }
   return 'Порядок: по умолчанию'
 })
-
-const regex = /[-() "]/g;
 
 const inputProp = (id, value, e) => {
   value = value
